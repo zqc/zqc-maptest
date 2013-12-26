@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" 
+    android:id="@+id/myLinerLayout">
+ 
+
+   <!--  <com.example.sensor.MyView
+        android:id="@+id/myView"
+      android:layout_width="fill_parent"
+        android:layout_height="wrap_content" /> -->
+  <Button
+        android:id="@+id/myButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/showText" 
+        android:onClick="start"
+        />
+   <!--   Button
+        android:id="@+id/myButton2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="2" 
+        android:onClick="saveData2"
+        /-->
+    <TextView
+        android:id="@+id/y"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+     />
+</LinearLayout>
