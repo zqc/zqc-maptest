@@ -22,9 +22,9 @@ public class MyView extends View {
 	private int recLength = 40;
 	private int width;
 	private int heigh;
-	// ÆÁÄ»¿í¶È¼¸µÈ·Ö width/recLength
+	// å±å¹•å®½åº¦å‡ ç­‰åˆ† width/recLength
 	private int withNo = 0;
-	// ÆÁÄ»¸ß¶È¼¸µÈ·Ö heigh/recLength
+	// å±å¹•é«˜åº¦å‡ ç­‰åˆ† heigh/recLength
 	private int heighNo = 0;
 	private Canvas mCanvas = new Canvas();
 	private Paint paint;
@@ -63,18 +63,18 @@ public class MyView extends View {
 	}
 
 	@Override
-	// ÖØĞ´¸Ã·½·¨£¬½øĞĞ»æÍ¼
+	// ç»˜å›¾
 	protected void onDraw(Canvas canvas) {
 
 		super.onDraw(canvas);
 		canvas.drawColor(Color.WHITE);
 		canvas.drawBitmap(mBitmap, 0, 0, null);
-		// È¥¾â³İ
+		 
 		paint.setAntiAlias(true);
 		paint.setColor(Color.BLUE);
-		// »­±Ê·ç¸ñ£¬¿ÕĞÄ
+		 
 		paint.setStyle(Paint.Style.STROKE);
-		// »­±Ê´óĞ¡
+	 
 		paint.setStrokeWidth(1);
 
 		for (int i = 0; i <= heighNo; i++) {
@@ -109,7 +109,7 @@ public class MyView extends View {
 	}
 
 	/**
-	 * ¸ù¾İµã×ø±ê±ê×¢ËùÔÚµÄ¾ØĞÎ
+	 * æ ¹æ®ç‚¹åæ ‡æ ‡æ³¨æ‰€åœ¨çŸ©å½¢
 	 * 
 	 * @param m
 	 */
@@ -120,18 +120,18 @@ public class MyView extends View {
 		int a = (int) (x / recLength);
 		int b = (int) (y / recLength);
 
-		// ÇåÆÁ
+		// æ¸…å±
 		p.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
 		mCanvas.drawPaint(p);
 
 		mCanvas.drawColor(Color.WHITE);
 		mCanvas.drawBitmap(mBitmap, 0, 0, null);
-		// È¥¾â³İ
+		// å»é”¯é½¿
 		paint.setAntiAlias(true);
 		paint.setColor(Color.BLUE);
-		// »­±Ê·ç¸ñ£¬¿ÕĞÄ
+		// ç”»ç¬”é£æ ¼ï¼Œ ç©ºå¿ƒ
 		paint.setStyle(Paint.Style.STROKE);
-		// »­±Ê´óĞ¡
+		// ç”»ç¬”å¤§å°
 		paint.setStrokeWidth(1);
 
 		for (int i = 0; i <= heighNo; i++) {

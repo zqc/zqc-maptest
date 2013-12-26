@@ -11,7 +11,7 @@ public class MyUtil {
 	private final static double ALPHA_ORIENTATION = 0.05;
 
 	/**
-	 * ·µ»ØÁ½´Î½Ç¶È²î£¬Õı ÎªË³Ê±Õë(ÓÒ×ª) ¸º ÎªÄæÊ±Õë(×ó×ª)
+	 *  æ­£ ä¸º é¡ºæ—¶é’ˆ-å³è½¬  è´Ÿæ•° - é€†æ—¶é’ˆ å·¦ä¼ 
 	 * @param startAngle
 	 * @param endAngle
 	 * @return rotationAngle double
@@ -32,7 +32,7 @@ public class MyUtil {
 	}
 	
 	/**
-	 * µÍÍ¨ÂË²¨Æ÷
+	 * lowPassFilter
 	 * @param arr
 	 * @param n
 	 * @return
@@ -48,7 +48,7 @@ public class MyUtil {
 		return tempValue;
 	}
 	/**
-	 * µÍÍ¨ÂË²¨Æ÷
+	 * lowpass filters
 	 * @param arr
 	 * @param n
 	 * @return
@@ -65,7 +65,7 @@ public class MyUtil {
 	}
 	
 	/**
-	 * ½«Êı×éÊı¾İĞ´Èë SD ¿¨ a.txt
+	 * 
 	 * @param temp
 	 * @param txtFileName
 	 */
@@ -80,7 +80,7 @@ public class MyUtil {
 		}else{
 			
 		
-		FileWriter fileWriter = null; //´´½¨ÎÄ¼şÍ¨¹ıFile¶ÔÏó
+		FileWriter fileWriter = null; 
 
 		try {
 			fileWriter = new FileWriter(file,true);
@@ -103,11 +103,11 @@ public class MyUtil {
 		}
 	}
 	/**
-	 * ¸ù¾İÉÏÒ»µã×ø±ê£¬ÉÏÒ»µãÇ°½ø·½Ïò¼ÆËãµ±Ç°µã×ø±ê
-	 * @param arr  ÉÏÒ»µã×ø±ê
-	 * @param len  ÉÏÒ»·½ÏòÇ°½ø¾àÀë
-	 * @param lastDirect ÉÏÒ»µãÇ°½ø·½Ïò
-	 * @return µ±Ç°µã×ø±ê£¬temp[0] x temp[1] y
+	 * è®¡ç®—å½“å‰åæ ‡
+	 * @param arr  ä¸Šä¸€ç‚¹åæ ‡
+	 * @param len  å‰è¿›è·ç¦»
+	 * @param lastDirect ä¸Šä¸€ç‚¹å‰è¿›æ–¹å‘
+	 * @return å½“å‰ç‚¹åæ ‡ï¼Œtemp[0] x temp[1] y
 	 */
 	public static float[] getStandPoint(float[] arr,float len,float lastDirect) {
 		float[] temp = new float[2];
@@ -135,7 +135,7 @@ public class MyUtil {
 		}else if(num == 2){
 			x = x1;
 			y = y0+y1;
-		}else{//×ø±êÏµ×ª»»
+		}else{//ï¿½åæ ‡ç³»è½¬æ¢
 			// x=x'cost-y'sint+x0;
 			x = (float) (x1*Math.cos(t) - y1*Math.sin(t) + x0);
 			 //y=x'sint+y'cost+y0. 

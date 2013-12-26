@@ -4,7 +4,7 @@ public class Point {
 
 	private double pointAcc;
 	private long pointTime;
-	private int flag;//1 ²¨·å -1²¨¹È
+	private int flag;//1 æ³¢å³° -1 æ³¢è°· 
 	
 	public double getPointAcc() {
 		return pointAcc;

@@ -188,9 +188,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 					point.setPointAcc(tempSum[i - 1]);
 
 					if ((tempSum[i - 1] - tempSum[i - 2]) > 0.0 && (tempSum[i - 1] - tempSum[i]) > 0.0) {
-						// Èç¹û¸øµãÖµ´óÓÚ°ø±ßµÄÁ½¸öÖµ£¬Ôò¸ÃµãÎª²¨·å
+						// å¦‚æœè¯¥ç‚¹å€¼å¤§äºæ—è¾¹ä¸¤ä¸ªå€¼ï¼Œåˆ™è¯¥ç‚¹ä¸ºæ³¢å³°
 						if (tempSum[i - 1] > limitMaxValue) {
-							// ºöÂÔ²¨·åÌ«Ğ¡µÄÖµ
+							//å¿½ç•¥æ³¢å³°å¤ªå°çš„å€¼
 							point.setFlag(1);
 							pointList.add(point);
 							pointwave.append(point.getPointAcc());
@@ -232,7 +232,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 					}
 
 					if ((tempSum[i - 1] - tempSum[i - 2]) < 0.0 && (tempSum[i - 1] - tempSum[i]) < 0.0) {
-						// Èç¹û¸øµãÖµĞ¡ÓÚ°ø±ßµÄÁ½¸öÖµ£¬Ôò¸ÃµãÎª²¨¹È
+						//å¦‚æœè¯¥ç‚¹å€¼å°äºæ—è¾¹çš„ä¸¤ä¸ªå€¼ï¼Œåˆ™è¯¥ç‚¹ä¸ºæ³¢è°·
 						if (tempSum[i - 1] < limitMinValue) {
 
 							point.setFlag(-1);
@@ -257,7 +257,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 						}
 					}
 
-					/*if (pointList.size() > 1) {// Èç¹ûÏàÁÚÁ½¸öµãÍ¬Îª²¨·å»òÕß²¨¹È±£Áô¾ø¶ÔÖµ´óµÄ
+					/*if (pointList.size() > 1) {//å¦‚æœç›¸é‚»ä¸¤ç‚¹åŒä¸ºæ³¢å³°æˆ–è€…æ³¢è°·ï¼Œä¿ç•™ç»å¯¹å€¼å¤§çš„ç‚¹
 						int n = pointList.size();
 						if ((pointList.get(n - 1).getFlag() * pointList.get(n - 2).getFlag()) > 0.0) {
 							double acc1 = Math.abs(pointList.get(n - 1).getPointAcc() - 10);
