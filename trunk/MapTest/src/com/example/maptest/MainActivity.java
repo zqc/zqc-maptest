@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.hardware.Sensor;
@@ -22,10 +23,11 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements SensorEventListener {
 	private int n = 0;
+	private int flag = 0;
 	private int fx = 0;
 	private int i = 0;
 	private List<Point> pointList = new ArrayList<Point>();
-	private float limitMaxValue = 3.6f;
+	private float limitMaxValue = 3.2f;
 	private float limitMinValue = -1f;
 	private StringBuffer pointwave = new StringBuffer();
 	private double[] dirArr = new double[3];
@@ -54,6 +56,8 @@ public class MainActivity extends Activity implements SensorEventListener {
 	private float[] point1 = new float[2];
 	private float[] point0 = new float[2];
 	
+	private StringBuffer orientationBuffer = new StringBuffer();
+	private StringBuffer accBuffer = new StringBuffer();
 	//private MyEventListene myListener = new MyEventListene();;
 
 	@Override
@@ -117,9 +121,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 	 @SuppressWarnings("deprecation")
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		/* if(fx++ < 20){
+		 if(flag++ < 15){
 			 return;
-		 }*/
+		 }
 		if (event.sensor.getType() == Sensor.TYPE_ORIENTATION) {
 			
 				
@@ -127,10 +131,12 @@ public class MainActivity extends Activity implements SensorEventListener {
 					if(fx == 1){
 						dirArr[0] = event.values[0];
 						directTemp = (float) dirArr[0];
+						orientationBuffer.append(directTemp + ",");
 					}else{
 						dirArr[1] = event.values[1];
 						dirArr[1] = MyUtil.lowPassFilter_Orientation(dirArr, 1);
 						directTemp = (float) dirArr[1];
+						orientationBuffer.append(directTemp + ",");
 					}
 					fx++;
 				}else{
@@ -140,6 +146,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 					
 					dirArr[2] = MyUtil.lowPassFilter_Orientation(dirArr, 2);
 					directTemp = (float) dirArr[2];
+					orientationBuffer.append(directTemp + ",");
 				}
 			
 			} 
@@ -151,7 +158,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 						tempy[0] = event.values[1];
 						tempz[0] = event.values[2];
 						tempSum[0] = tempx[0] + tempy[0] + tempz[0];
-
+						accBuffer.append(tempSum[0] + ",");
 					} else {
 
 						tempx[1] = event.values[0];
@@ -159,7 +166,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 						tempz[1] = event.values[2];
 						tempSum[1] = tempx[1] + tempy[1] + tempz[1];
 						tempSum[1] = MyUtil.lowPassFilter(tempSum, 1);
-
+						accBuffer.append(tempSum[1] + ",");
 					}
 					i++;
 				} else {
@@ -186,7 +193,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 					tempSum[i] = MyUtil.lowPassFilter(tempSum, i);
 					Point point = new Point();
 					point.setPointAcc(tempSum[i - 1]);
-
+					accBuffer.append(tempSum[2] + ",");
 					if ((tempSum[i - 1] - tempSum[i - 2]) > 0.0 && (tempSum[i - 1] - tempSum[i]) > 0.0) {
 						// 如果该点值大于旁边两个值，则该点为波峰
 						if (tempSum[i - 1] > limitMaxValue) {
@@ -197,6 +204,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 							pointwave.append(",");
 
 							stepCount++;
+							
 							if(stepCount == 1){
 								turnAngle = 0;
 							}else{
@@ -205,13 +213,15 @@ public class MainActivity extends Activity implements SensorEventListener {
 							
 							turnAngleSum += turnAngle;
 							coordinateAngle = turnAngle;
-							point1 = MyUtil.changeCoordinate(stepCount, point1, coordinateAngle, turnAngleSum, stepLength);
+							point1 = MyUtil.changeCoordinate2(stepCount, point1, coordinateAngle, turnAngleSum, stepLength);
 
 							lastDirect0 = this.directTemp;
 
 							myView.setPointOnMap(point0, point1);
 							point0 = point1;
-
+							if(stepCount >= 22){
+								this.saveDate();
+							}
 							/*
 							 * int n = pointList.size(); if (n == 1) {
 							 * stepCount++; } else if (pointList.get(n -
@@ -280,5 +290,15 @@ public class MainActivity extends Activity implements SensorEventListener {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	private void saveDate(){
+		MyUtil.wirteTxt3(orientationBuffer.toString(), "-ori-");
+		MyUtil.wirteTxt3(accBuffer.toString(), "_acc_");
+	}
+	
+	 @Override
+	protected void onStop() {
+		super.onStop();
+		sensorManager.unregisterListener(this);
+	 }
 }

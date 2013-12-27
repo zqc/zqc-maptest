@@ -146,5 +146,57 @@ public class MyUtil {
 		
 		return temp;
 	}
+	
+	public static float[] changeCoordinate2(int num,float[] lastPoint,float coordinateAngle,float turnAngleSum,float len){
+		float[] temp = new float[2];
+		float x = 0,y=0,x1=0,y1=0,x0=0,y0=0;
+		float t = (float) (coordinateAngle*Math.PI/180);
+		//float t = (float) (turnAngleSum*Math.PI/180);
+	 
+		x0 = lastPoint[0]; 
+		y0 = lastPoint[1];
+		 
+		x1 = (float) (len * Math.sin(turnAngleSum*Math.PI/180));
+		y1 = (float) (len * Math.cos(turnAngleSum*Math.PI/180));
+	//	x1 = (float) (len * Math.sin(coordinateAngle*Math.PI/180));
+	//	y1 = (float) (len * Math.cos(coordinateAngle*Math.PI/180));
+		if(num == 1){
+			x = 0;
+			y = len;
+		}else{
+			x = x1 + x0;
+			y = y1 + y0;
+		} 
+		
+		temp[0] = x;
+		temp[1] = y;
+		
+		return temp;
+	}
+	
+	public static void wirteTxt3(String listx,String name) {
+		String fileName = name+"_map_test_Data.txt";
+		File file = new File(Environment.getExternalStorageDirectory(), fileName);
+		FileWriter fileWriter = null;  
+
+		try {
+			fileWriter = new FileWriter(file);
+
+			fileWriter.write(listx);
+ 
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				fileWriter.flush();
+				fileWriter.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+	}
 
 }
