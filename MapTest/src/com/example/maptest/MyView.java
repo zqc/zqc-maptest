@@ -104,7 +104,7 @@ public class MyView extends View {
 		float stopY = 240 - pointEnd[1];
 		paint.setColor(Color.BLACK);
 		//mCanvas.drawLine(startX, startY, stopX, stopY, paint);
-		//invalidate();
+		invalidate();
 		this.markRectangle(stopX, stopY);
 	}
 
