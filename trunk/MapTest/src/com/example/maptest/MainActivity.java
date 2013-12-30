@@ -63,8 +63,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	    df = new java.text.DecimalFormat(".00");
 		setContentView(R.layout.activity_main);
+		
+	    df = new java.text.DecimalFormat(".00");
 		 myButton = (Button) findViewById(R.id.myButton);
 		y = (TextView) findViewById(R.id.y);
 		LinearLayout mLinerLayout = (LinearLayout) findViewById(R.id.myLinerLayout);
@@ -121,6 +122,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 	 @SuppressWarnings("deprecation")
 	@Override
 	public void onSensorChanged(SensorEvent event) {
+		 y.setText( stepCount +"||"+df.format(point1[0]) + "||" +df.format(point1[1]) + "||" + df.format(turnAngle) + "||" + df.format(lastDirect0) + "||" + df.format(this.directTemp));
 		 if(flag++ < 15){
 			 return;
 		 }
@@ -151,7 +153,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 			
 			} 
 			if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
-				 y.setText( stepCount +"||"+df.format(point1[0]) + "||" +df.format(point1[1]) + "||" + df.format(turnAngle) + "||" + df.format(lastDirect0) + "||" + df.format(this.directTemp));
+			//	 y.setText( stepCount +"||"+df.format(point1[0]) + "||" +df.format(point1[1]) + "||" + df.format(turnAngle) + "||" + df.format(lastDirect0) + "||" + df.format(this.directTemp));
 				if (i < 2) {
 					if (i == 0) {
 						tempx[0] = event.values[0];
